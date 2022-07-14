@@ -1,26 +1,17 @@
-const { MongoClient } = require("mongodb");
-const Db = process.env.ATLAS_URI;
-const client = new MongoClient(Db, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
- 
-var _db;
- 
+const mongoose = require('mongoose');
+mongoose.set('bufferCommands',false);
+const connectToServer = async() =>{
+    try{
+
+        await mongoose.connect(process.env.ATLAS_URI);
+
+        console.log('Bases de datos online');
+    }catch (error){
+        console.log(error);
+        throw new Error('Error base de datos');
+    }
+}
+
 module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      // Verify we got a good "db" object
-      if (db)
-      {
-        _db = db.db("Twitter");
-        console.log("Successfully connected to MongoDB."); 
-      }
-      return callback(err);
-         });
-  },
- 
-  getDb: function () {
-    return _db;
-  },
-};
+  connectToServer
+}
