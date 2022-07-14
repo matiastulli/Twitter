@@ -1,0 +1,3 @@
+// Este es un ejemplo del conector
+
+mongodb+srv://<user>:<password>@clustertwitter.a48wuka.mongodb.net/?retryWrites=true&w=majority
