@@ -1,4 +1,4 @@
 // Este es un ejemplo del conector
 
-ATLAS_URI=mongodb+srv://<user>:<password>@clustertwitter.a48wuka.mongodb.net/?retryWrites=true&w=majority
-PORT=3010
+ATLAS_URI=mongodb+srv://twitter2022:Kpmg2022@clustertwitter.a48wuka.mongodb.net/Twitter?retryWrites=true&w=majority
+PORT = 3000
