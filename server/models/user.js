@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 const { model } = mongoose;
+
 // Se crea el schema de un usuario
 const UserSchema = Schema({
     name: {

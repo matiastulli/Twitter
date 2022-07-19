@@ -8,6 +8,7 @@ const login = async(req = request, res = response) => {
   const {email, password} = req.body;
 
   try{
+    
       //Verificar si el email existe
       const user = await User.findOne({email});
       if(!user){
