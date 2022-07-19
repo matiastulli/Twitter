@@ -1,4 +1,4 @@
-// Este es un ejemplo del conector
-
-ATLAS_URI=mongodb+srv://twitter2022:Kpmg2022@clustertwitter.a48wuka.mongodb.net/Twitter?retryWrites=true&w=majority
-PORT = 3000
+// Ejemplo de las variables de entorno
+JWT_SECRET=clave secreta jwt 
+MONGO_URI=MONGO URI
+PORT=PUERTO
