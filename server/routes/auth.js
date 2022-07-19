@@ -1,11 +1,11 @@
 import { Router } from "express";
-import login from "../controllers/auth";
+import login from "../controllers/auth.js";
 
-const router = Router();
+const authRouter = Router();
 
 // TODO: Validar campos
-router.post('/login', login)
+authRouter.post('/', login)
 
 
+export default authRouter;
 
-export default router;

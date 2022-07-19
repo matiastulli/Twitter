@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import login from '../controllers/auth.js'
+
+import authRouter from '../routes/auth.js';
+import userRouter from '../routes/user.js';
 import dbConnection from '../db/connection.js';
 
 class Server {
@@ -11,8 +13,8 @@ class Server {
 
     // Paths 
     this.path = {
-      auth: '/auth',
-      register: '/register'
+      auth: '/api/auth',
+      user: '/api/user'
     }
 
     // Ejecutar la funcion de middlewares
@@ -40,7 +42,8 @@ class Server {
   }
 
   routes(){
-    this.app.use(this.path.auth, login);
+    this.app.use(this.path.auth, authRouter);
+    this.app.use(this.path.user, userRouter);
     // this.app.use(this.path.register, import('../routes/register'));
   }
 

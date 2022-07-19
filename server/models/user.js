@@ -21,8 +21,7 @@ const UserSchema = Schema({
         required: [true, 'La contraseña es obligatoria']
     },
     birthdate: {
-        type: Date,
-        required: [true, 'La fecha de nacimiento es obligatoria']
+        type: Date
     },
     role: {
         type: String,
@@ -37,7 +36,7 @@ const UserSchema = Schema({
 
 UserSchema.methods.toJSON = function(){
     const {__v, password ,_id, ...User} = this.toObject();
-    User.uid = _id;
+    User.uid = _id; 
     return User;
 }
 
