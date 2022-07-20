@@ -1,6 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 // import signinLogo from './singin.svg';
 
 const registerSchema = Yup.object().shape({
@@ -148,7 +150,7 @@ const Register = ({ register }) => {
 
 									<div className="text-center">
 										<p>
-											Already a member? <a href="#!">Login</a>
+											Already a member? <Link to="/login">Login</Link>
 										</p>
 										<button
 											type="button"

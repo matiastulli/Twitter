@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const loginSchema = Yup.object().shape({
 	email: Yup.string().email('Invalid email').required('Required'),
@@ -96,7 +97,8 @@ const Login = ({ login }) => {
 											</div>
 										</div>
 										<div className="col">
-											<a href="#!">Forgot password?</a>
+											{/* TODO: Forgot password function */}
+											<Link to="/login">Forgot password?</Link>
 										</div>
 									</div>
 
@@ -109,7 +111,7 @@ const Login = ({ login }) => {
 
 									<div className="text-center">
 										<p>
-											Not a member? <a href="#!">Register</a>
+											Not a member? <Link to="/register">Register</Link>
 										</p>
 										<button
 											type="button"

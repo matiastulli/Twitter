@@ -5,6 +5,8 @@ import Login from './components/login/login';
 import axios from 'axios';
 import React, { useState } from 'react';
 import Register from './components/register/register';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/home/home';
 
 function App() {
 	axios.defaults.baseURL = 'http://localhost:5000/api';
@@ -44,8 +46,11 @@ function App() {
 
 	return (
 		<div className="App">
-			{/* <Login login={login} /> */}
-			<Register register={register} />
+			<Routes>
+				<Route exact path="/" element={<Home />} />
+				<Route path="/login" element={<Login login={login} />} />
+				<Route path="/register" element={<Register register={register} />} />
+			</Routes>
 		</div>
 	);
 }
