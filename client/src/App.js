@@ -1,29 +1,40 @@
-import Homepage from "./components/homepage/homepage"
-import Register from "./components/register/register"
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
+import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import Login from './components/login/login';
+import axios from 'axios';
+import React, { useState } from 'react';
 
-} from "react-router-dom";
-import { useState } from 'react';
 function App() {
-  const [user, setLoginUser] = useState({
+	axios.defaults.baseURL = 'http://localhost:5000/api';
 
-  })
-  return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route exact path="/">
-            {
-              user && user._id ? <Homepage /> : <Login />
-            }<Homepage /></Route>
-          <Route path="/api/user/register"><Register /></Route>
-        </Routes>
-      </Router>
-    </div>
-  );
+	const [user, setUser] = useState(null);
+	const [token, setToken] = useState(null);
+	const [isLogged, setIsLogged] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(null);
+
+	const login = async (email, password) => {
+		const { data } = await axios.post('/auth', { email, password });
+
+		setUser(data.user);
+		setToken(data.token);
+		localStorage.setItem('token', data.token);
+		console.log(user, token);
+	};
+
+	const logout = () => {
+		setUser(null);
+		setToken(null);
+		localStorage.removeItem('token');
+		setIsLogged(false);
+	};
+
+	return (
+		<div className="App">
+			<Login login={login} />
+		</div>
+	);
 }
 
 export default App;
