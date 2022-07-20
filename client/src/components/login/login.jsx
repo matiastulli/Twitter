@@ -42,9 +42,9 @@ const Login = ({ login }) => {
 							}) => (
 								<Form>
 									<div className="form-outline mb-4">
-										<label className="form-label" htmlFor="email">
-											Email
-										</label>
+										{/* <label className="form-label" htmlFor="email">
+											email
+										</label> */}
 										<Field
 											id="email"
 											name="email"
@@ -60,9 +60,9 @@ const Login = ({ login }) => {
 									</div>
 
 									<div className="form-outline mb-4">
-										<label className="form-label" htmlFor="password">
-											Password
-										</label>
+										{/* <label className="form-label" htmlFor="password">
+											password
+										</label> */}
 										<Field
 											id="password"
 											name="password"
