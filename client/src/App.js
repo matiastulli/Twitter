@@ -1,5 +1,4 @@
 import Homepage from "./components/homepage/homepage"
-import Login from "./components/login/login"
 import Register from "./components/register/register"
 import {
   BrowserRouter as Router,
@@ -20,12 +19,9 @@ function App() {
             {
               user && user._id ? <Homepage /> : <Login />
             }<Homepage /></Route>
-          <Route path="/login"><Login setLoginUser={setLoginUser} /></Route>
-          <Route path="/register"><Register /></Route>
+          <Route path="/api/user/register"><Register /></Route>
         </Routes>
-
       </Router>
-
     </div>
   );
 }

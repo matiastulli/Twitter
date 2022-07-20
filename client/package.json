@@ -38,5 +38,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "browser": {
+    "fs": false,
+    "http": false,
+    "https": false,
+    "stream": false,
+    "get-pixels": false,
+    "ndarray": false,
+    "save-pixels": false,
+    "stream-to-async-iterator": false,
+    "through": false,
+    "util": false,
+    "zlib": false,
+    "web-streams-polyfill": false
   }
 }

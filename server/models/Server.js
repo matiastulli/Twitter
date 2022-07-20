@@ -6,53 +6,51 @@ import userRouter from '../routes/user.js';
 import dbConnection from '../db/connection.js';
 
 class Server {
-  
-  constructor(){
-    this.app = express();
-    this.port = process.env.PORT
+	constructor() {
+		this.app = express();
+		this.port = process.env.PORT;
 
-    // Paths 
-    this.path = {
-      auth: '/api/auth',
-      user: '/api/user'
-    }
+		// Paths
+		this.path = {
+			auth: '/api/auth',
+			user: '/api/user',
+		};
 
-    // Ejecutar la funcion de middlewares
-    this.middlewares();
+		// Ejecutar la funcion de middlewares
+		this.middlewares();
 
-    // Conectar a la base de datos
-    this.connectionMongo();
-    
-    // Rutas de la aplicacion
-    this.routes();
-  }
+		// Conectar a la base de datos
+		this.connectionMongo();
 
-  middlewares(){
-    //CORS (Intercambio de Recursos de Origen Cruzado)
-    this.app.use(cors());
+		// Rutas de la aplicacion
+		this.routes();
+	}
 
-    //lectura y parseo del body con .json
-    this.app.use(express.json());
+	middlewares() {
+		// CORS (Intercambio de Recursos de Origen Cruzado)
+		this.app.use(cors());
 
-    //TODO: poder cargar archivos con fileUpload()
-  }
+		// lectura y parseo del body con .json
+		this.app.use(express.json());
 
-  async connectionMongo(){
-    await dbConnection();
-  }
+		// TODO: poder cargar archivos con fileUpload()
+	}
 
-  routes(){
-    this.app.use(this.path.auth, authRouter);
-    this.app.use(this.path.user, userRouter);
-    // this.app.use(this.path.register, import('../routes/register'));
-  }
+	async connectionMongo() {
+		await dbConnection();
+	}
 
-  listen(){
-    this.app.listen(this.port, ()=>{
-      console.log(`Servidor corriendo en http://localhost:${this.port}`);
-    })
-  }
+	routes() {
+		this.app.use(this.path.auth, authRouter);
+		this.app.use(this.path.user, userRouter);
+		// this.app.use(this.path.register, import('../routes/register'));
+	}
 
+	listen() {
+		this.app.listen(this.port, () => {
+			console.log(`Servidor corriendo en http://localhost:${this.port}`);
+		});
+	}
 }
 
 export default Server;

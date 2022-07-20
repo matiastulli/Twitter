@@ -1,26 +1,35 @@
 {
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "express-validator": "^6.14.2",
-    "jsonwebtoken": "^8.5.1",
-    "mongodb": "^4.8.0",
-    "mongoose": "^6.4.4"
-  },
-  "scripts": {
-    "dev": "nodemon index.js"
-  },
-  "name": "server",
-  "version": "1.0.0",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "type": "module",
-  "devDependencies": {
-    "nodemon": "2.0.19"
-  }
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"express-validator": "^6.14.2",
+		"jsonwebtoken": "^8.5.1",
+		"mongodb": "^4.8.0",
+		"mongoose": "^6.4.4"
+	},
+	"scripts": {
+		"dev": "nodemon index.js",
+		"format": "prettier --write .",
+		"lint": "eslint --fix . --ext .js,.jsx,.ts,.tsx"
+	},
+	"name": "server",
+	"version": "1.0.0",
+	"main": "index.js",
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"type": "module",
+	"devDependencies": {
+		"eslint": "^8.20.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-n": "^15.2.4",
+		"eslint-plugin-promise": "^6.0.0",
+		"nodemon": "2.0.19",
+		"prettier": "^2.7.1"
+	}
 }
