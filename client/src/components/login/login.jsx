@@ -1,6 +1,5 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 
 const loginSchema = Yup.object().shape({

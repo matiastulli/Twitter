@@ -4,6 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Login from './components/login/login';
 import axios from 'axios';
 import React, { useState } from 'react';
+import Register from './components/register/register';
 
 function App() {
 	axios.defaults.baseURL = 'http://localhost:5000/api';
@@ -30,9 +31,21 @@ function App() {
 		setIsLogged(false);
 	};
 
+	const register = async (name, surname, email, password) => {
+		const { data } = await axios.post('/user/register', {
+			name,
+			surname,
+			email,
+			password,
+		});
+		setUser(data.user);
+		console.log(data.user);
+	};
+
 	return (
 		<div className="App">
-			<Login login={login} />
+			{/* <Login login={login} /> */}
+			<Register register={register} />
 		</div>
 	);
 }
