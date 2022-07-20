@@ -18,7 +18,11 @@ const Register = () => {
     const register = () => {
         const { name, email, password } = user
         if (name && email && password) {
+<<<<<<< HEAD
             axios.post("http://localhost:3000/api/user/register", user)
+=======
+            axios.post("http://localhost:3000/api/register", user)
+>>>>>>> e8a3f1b9f031dddf25368be11702d78535dc0165
                 .then(res => console.log(res))
         }
         else {
