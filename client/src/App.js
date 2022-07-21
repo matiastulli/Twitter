@@ -8,52 +8,53 @@ import Register from './components/register/register';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/home/home';
 import Navbar from './components/navbar/navbar';
+import { UserContextProvider } from './context/userContext';
 
 function App() {
-	axios.defaults.baseURL = 'http://localhost:5000/api';
-
 	const [user, setUser] = useState(null);
 	const [token, setToken] = useState(null);
 	const [isLogged, setIsLogged] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
 
-	const login = async (email, password) => {
-		const { data } = await axios.post('/auth', { email, password });
+	// const login = async (email, password) => {
+	// 	const { data } = await axios.post('/auth', { email, password });
 
-		setUser(data.user);
-		setToken(data.token);
-		localStorage.setItem('token', data.token);
-		console.log(user, token);
-	};
+	// 	setUser(data.user);
+	// 	setToken(data.token);
+	// 	localStorage.setItem('token', data.token);
+	// 	console.log(user, token);
+	// };
 
-	const logout = () => {
-		setUser(null);
-		setToken(null);
-		localStorage.removeItem('token');
-		setIsLogged(false);
-	};
+	// const logout = () => {
+	// 	setUser(null);
+	// 	setToken(null);
+	// 	localStorage.removeItem('token');
+	// 	setIsLogged(false);
+	// };
 
-	const register = async (name, surname, email, password) => {
-		const { data } = await axios.post('/user/register', {
-			name,
-			surname,
-			email,
-			password,
-		});
-		setUser(data.user);
-		console.log(data.user);
-	};
+	// const register = async (name, surname, email, password) => {
+	// 	const { data } = await axios.post('/user/register', {
+	// 		name,
+	// 		surname,
+	// 		email,
+	// 		password,
+	// 	});
+	// 	setUser(data.user);
+	// 	console.log(data.user);
+	// };
 
 	return (
-		<div className="App">
-			<Navbar isLogged={isLogged} />
-			<Routes>
-				<Route exact path="/" element={<Home />} />
-				<Route path="/login" element={<Login login={login} />} />
-				<Route path="/register" element={<Register register={register} />} />
-			</Routes>
-		</div>
+		<UserContextProvider>
+			<div className="App">
+				<Navbar isLogged={isLogged} user={user} />
+				<Routes>
+					<Route path="/home" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+				</Routes>
+			</div>
+		</UserContextProvider>
 	);
 }
 

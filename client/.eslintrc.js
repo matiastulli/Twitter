@@ -25,5 +25,7 @@ module.exports = {
 	rules: {
 		'no-tabs': 'off',
 		'no-unused-vars': 'warn',
+		'react/jsx-uses-react': 'off',
+		'react/react-in-jsx-scope': 'off',
 	},
 };

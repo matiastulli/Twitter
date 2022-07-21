@@ -1,7 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-const Navbar = ({ isLogged }) => {
+import useUser from '../../hooks/useUser';
+
+const Navbar = () => {
+	const { isLogged, logout } = useUser();
+
+	const handleLogout = () => {
+		logout();
+		localStorage.removeItem('token');
+	};
+
 	return (
 		// Create a navbar
 
@@ -21,7 +28,7 @@ const Navbar = ({ isLogged }) => {
 
 					<ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 						<li>
-							<Link to="/" className="nav-link px-2 link-dark">
+							<Link to="/home" className="nav-link px-2 link-dark">
 								Dev App
 							</Link>
 						</li>
@@ -50,24 +57,25 @@ const Navbar = ({ isLogged }) => {
 						/>
 					</form>
 
-					<ul className="nav m-2 justify-content-center">
-						<li>
-							<Link to="/notifications" className="nav-link px-2 link-dark">
-								<button
-									type="button"
-									className="btn btn-light position-relative"
-								>
-									<i className="bi bi-bell" />
-									{isLogged ? (
+					{isLogged ? (
+						<ul className="nav justify-content-center">
+							<li>
+								<Link to="/notifications" className="nav-link px-2 link-dark">
+									<button
+										type="button"
+										className="btn btn-light position-relative"
+									>
+										<i className="bi bi-bell" />
+
 										<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 											99
 											<span className="visually-hidden">unread messages</span>
 										</span>
-									) : null}
-								</button>
-							</Link>
-						</li>
-					</ul>
+									</button>
+								</Link>
+							</li>
+						</ul>
+					) : null}
 
 					<div className="dropdown text-end p-2">
 						<Link
@@ -78,7 +86,7 @@ const Navbar = ({ isLogged }) => {
 						>
 							{isLogged ? (
 								<img
-									src="https://github.com/mdo.png"
+									src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo38tCnX_HjKgFyft_g7SeKWrA9IqaS3dgnNJVmwe77ceNSy04aJjtk-ik3xo0VWjXG7Y&usqp=CAU"
 									alt="mdo"
 									width="32"
 									height="32"
@@ -98,7 +106,11 @@ const Navbar = ({ isLogged }) => {
 						{isLogged ? (
 							<ul className="dropdown-menu text-small">
 								<li>
-									<Link className="dropdown-item" to="/login">
+									<Link
+										className="dropdown-item"
+										to="/login"
+										onClick={handleLogout}
+									>
 										Logout
 									</Link>
 								</li>
@@ -112,8 +124,11 @@ const Navbar = ({ isLogged }) => {
 										Profile
 									</Link>
 								</li>
+								<hr />
 								<li>
-									<hr className="dropdown-divider" />
+									<Link className="dropdown-item" to="/about">
+										About
+									</Link>
 								</li>
 							</ul>
 						) : (
@@ -141,10 +156,6 @@ const Navbar = ({ isLogged }) => {
 			</div>
 		</header>
 	);
-};
-
-Navbar.propTypes = {
-	isLogged: PropTypes.bool.isRequired,
 };
 
 export default Navbar;

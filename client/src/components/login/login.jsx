@@ -1,20 +1,39 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import Context from '../../context/userContext';
+import useUser from '../../hooks/useUser';
 
 const loginSchema = Yup.object().shape({
 	email: Yup.string().email('Invalid email').required('Required'),
 	password: Yup.string().required('Required').min(6, 'Invalid password'),
 });
 
-const Login = ({ login }) => {
+const Login = () => {
 	const credenciales = {
 		email: '',
 		password: '',
 	};
+	const location = useLocation();
+	const [error, setError] = useState(null);
+	const { isLogged, login } = useUser();
+	const { jwt } = useContext(Context);
 
-	return (
+	useEffect(() => {
+		if (isLogged) {
+			localStorage.setItem('token', jwt);
+		}
+	}, [isLogged]);
+
+	const handleSubmit = async values => {
+		login(values);
+		if (!isLogged) {
+			setError('Invalid email or password');
+		}
+	};
+
+	return !isLogged ? (
 		<section className="vh-100">
 			<div className="container py-5 h-100">
 				<div className="row d-flex align-items-center justify-content-center h-100">
@@ -29,7 +48,7 @@ const Login = ({ login }) => {
 						<Formik
 							initialValues={credenciales}
 							validationSchema={loginSchema}
-							onSubmit={values => login(values.email, values.password)}
+							onSubmit={values => handleSubmit(values)}
 						>
 							{({
 								values,
@@ -41,6 +60,8 @@ const Login = ({ login }) => {
 								isSubmitting,
 							}) => (
 								<Form>
+									{error && <p className="text-danger">{error}</p>}
+
 									<div className="form-outline mb-4">
 										{/* <label className="form-label" htmlFor="email">
 											email
@@ -70,11 +91,6 @@ const Login = ({ login }) => {
 											placeholder="password"
 											className="form-control"
 										/>
-										{errors.password && touched.password && (
-											<div className="error">
-												<p>{errors.password}</p>
-											</div>
-										)}
 									</div>
 
 									<div className="row mb-4">
@@ -102,12 +118,14 @@ const Login = ({ login }) => {
 										</div>
 									</div>
 
+									{/* <Link to="/home"> */}
 									<button
 										className="btn btn-primary btn-block mb-4"
 										type="submit"
 									>
 										Login
 									</button>
+									{/* </Link> */}
 
 									<div className="text-center">
 										<p>
@@ -148,11 +166,9 @@ const Login = ({ login }) => {
 				</div>
 			</div>
 		</section>
+	) : (
+		<Navigate to="/home" replace state={{ from: location }} />
 	);
-};
-
-Login.propTypes = {
-	login: PropTypes.func.isRequired,
 };
 
 export default Login;
