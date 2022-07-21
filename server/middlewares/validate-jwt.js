@@ -3,7 +3,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import User from '../models/User';
 
 const validateJWT = async (req = request, res = response, next) => {
-	const token = req.headers('x-token');
+	const token = req.headers('token');
 
 	// Verificar si el token existe
 	if (!token) {

@@ -105,3 +105,4 @@ dist
 
 # folder of config
 server/*.env
+client/*.env
