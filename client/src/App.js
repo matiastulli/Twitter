@@ -1,14 +1,14 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import Login from './components/login/login';
+import Login from './components/login/loginView';
 import axios from 'axios';
 import React, { useState } from 'react';
-import Register from './components/register/register';
 import { Route, Routes } from 'react-router-dom';
-import Home from './components/home/home';
-import Navbar from './components/navbar/navbar';
 import { UserContextProvider } from './context/userContext';
+import Home from './components/home/homeView';
+import Navbar from './components/navbar/navbarView';
+import Register from './components/register/registerView';
 
 function App() {
 	const [user, setUser] = useState(null);
