@@ -1,6 +1,6 @@
 import { response, request } from 'express';
 import bcryptjs from 'bcryptjs';
-import User from '../models/User.js';
+import User from '../models/userModel.js';
 import generateJWT from '../helpers/JWTgenerator.js';
 
 const login = async (req = request, res = response) => {
@@ -33,7 +33,7 @@ const login = async (req = request, res = response) => {
 			token,
 		});
 	} catch (err) {
-		res.status(500).json({ msg: 'Error al intenetar iniciar sesión' });
+		res.status(500).json({ msg: 'Error al intentar iniciar sesión' });
 	}
 };
 

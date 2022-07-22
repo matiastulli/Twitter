@@ -5,7 +5,7 @@ import {
 	usersGet,
 	userGet,
 	userDelete,
-} from '../controllers/users.js';
+} from '../controllers/userControllers.js';
 import validateFields from '../middlewares/validate-fields.js';
 import { check } from 'express-validator';
 

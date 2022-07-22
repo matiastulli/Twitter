@@ -1,5 +1,5 @@
 import { request, response } from 'express';
-import User from '../models/User.js';
+import User from '../models/userModel.js';
 import bcryptjs from 'bcryptjs';
 
 const userGet = async (req = request, res = response) => {
@@ -31,7 +31,8 @@ const userPost = async (req = request, res = response) => {
 	if (userExist) {
 		return res.status(400).json({ msg: 'El usuario ya existe' });
 	}
-
+	
+	// TODO: Sugerencia Mati -> Encriptar la contraseña en el model
 	// Encriptar la contraseña
 	const salt = bcryptjs.genSaltSync();
 	user.password = bcryptjs.hashSync(password, salt);
@@ -39,7 +40,7 @@ const userPost = async (req = request, res = response) => {
 	// Guardar en la DB
 	try {
 		await user.save();
-		res.status(200).json({
+		res.status(201).json({
 			user,
 		});
 	} catch (err) {

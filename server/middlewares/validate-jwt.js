@@ -1,6 +1,6 @@
 import { request, response } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
-import User from '../models/User';
+import User from '../models/userModel';
 
 const validateJWT = async (req = request, res = response, next) => {
 	const token = req.headers('token');
